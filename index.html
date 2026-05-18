@@ -1,0 +1,449 @@
+!   
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Premium | Zanspiw Official</title>
+    <style>
+        /* Modern Design Palette & CSS Variables (Tema Merah & Biru) */
+        :root {
+            --bg-dark: #070b14;
+            --card-bg: rgba(15, 22, 42, 0.8);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-blue: #3b82f6;   /* Biru Elektrik */
+            --accent-red: #ef4444;    /* Merah Menyala */
+            --accent-cyan: #06b6d4;   /* Sian untuk variasi text */
+            --font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: var(--font-family);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            overflow-y: auto; 
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient Dynamic Background Elements (Glow Merah & Biru) */
+        .bg-glows {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .glow-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.2;
+            animation: pulseGlow 12s infinite alternate ease-in-out;
+        }
+
+        .glow-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent-red);
+            top: -10%;
+            left: -10%;
+        }
+
+        .glow-2 {
+            width: 450px;
+            height: 450px;
+            background: var(--accent-blue);
+            bottom: -10%;
+            right: -10%;
+            animation-delay: 2s;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.2) translate(40px, 30px); }
+        }
+
+        /* Layout Container */
+        .portfolio-container {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            z-index: 1;
+            padding-bottom: 20px;
+        }
+
+        /* Profile Card */
+        .profile-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 20px;
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Efek Lampu Border Foto (Merah Biru Bergantian) */
+        .avatar-glow {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+            border: 2px solid var(--accent-blue);
+            animation: borderPulse 4s infinite ease-in-out;
+        }
+
+        @keyframes borderPulse {
+            0%, 100% { border-color: var(--accent-blue); box-shadow: 0 0 25px rgba(59, 130, 246, 0.6); }
+            50% { border-color: var(--accent-red); box-shadow: 0 0 25px rgba(239, 68, 68, 0.6); transform: scale(1.03); }
+        }
+
+        .profile-card h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        /* Gradasi Teks Nama Merah ke Biru */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .profile-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.5;
+            max-width: 420px;
+            margin: 0 auto;
+        }
+
+        /* Main Content Block (Cards) */
+        .section-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-card h2 {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-secondary);
+            margin-bottom: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Buttons Layout */
+        .links-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .btn-channel {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            border-radius: 14px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .btn-channel .channel-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-channel .arrow {
+            transition: transform 0.3s ease;
+            opacity: 0.6;
+        }
+
+        .btn-channel:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-channel:hover .arrow {
+            transform: translateX(4px);
+            opacity: 1;
+        }
+
+        /* Seting Tombol Tema Merah Biru */
+        .btn-panel {
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+        .btn-panel:hover {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-tg {
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+        .btn-tg:hover {
+            background: rgba(239, 68, 68, 0.15);
+            border-color: var(--accent-red);
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-wa {
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+        .btn-wa:hover {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-yt {
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+        .btn-yt:hover {
+            background: rgba(239, 68, 68, 0.15);
+            border-color: var(--accent-red);
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+        }
+
+        /* Quotes / Kata-Kata Section Style */
+        .quotes-container {
+            padding: 12px 6px;
+            text-align: center;
+        }
+
+        .quote-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+
+        .btn-view-all-testi {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 18px;
+            transition: color 0.2s;
+        }
+
+        .btn-view-all-testi:hover {
+            color: var(--accent-red);
+        }
+
+        /* Interactive Counter Area */
+        .stats-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .stat-box {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .stat-box:hover {
+            background: rgba(255, 255, 255, 0.02);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-num {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .copyright {
+            font-size: 12px;
+            color: rgba(148, 163, 184, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Latar Belakang Cahaya Menyala (Merah & Biru Neon) -->
+    <div class="bg-glows">
+        <div class="glow-circle glow-1"></div>
+        <div class="glow-circle glow-2"></div>
+    </div>
+
+    <div class="portfolio-container">
+
+        <!-- Kartu Utama Profil -->
+        <header class="profile-card">
+            <div class="avatar-wrapper">
+                <img src="https://files.catbox.moe/l7jkap.png" alt="Zanspiw Official" class="avatar">
+                <div class="avatar-glow"></div>
+            </div>
+            <h1>Halo, Saya <span class="gradient-text">Zanspiw Official</span></h1>
+            <p>Content Creator & Tech Enthusiast. Selamat datang di toko panel dan ruang digital resmi saya.</p>
+        </header>
+
+        <!-- Kartu Sosmed & Link Saluran -->
+        <section class="section-card">
+            <h2>🔗 Terhubung & Layanan</h2>
+            <div class="links-grid">
+                
+                <!-- Link Website Jual Panel Resmi (Biru) -->
+                <a href="https://zanspiwptero.shoppanel.my.id/" target="_blank" class="btn-channel btn-panel">
+                    <div class="channel-info">
+                        <span>🛒</span>
+                        <span>Website Jual Panel</span>
+                    </div>
+                    <span class="arrow">➔</span>
+                </a>
+
+                <!-- Link Telegram Contact Me (Merah) -->
+                <a href="https://t.me/janpwk" target="_blank" class="btn-channel btn-tg">
+                    <div class="channel-info">
+                        <span>✈️</span>
+                        <span>Hubungi Saya (Telegram)</span>
+                    </div>
+                    <span class="arrow">➔</span>
+                </a>
+
+                <!-- Link Channel WhatsApp (Biru) -->
+                <a href="https://www.whatsapp.com/channel/0029VavKSRv6WaKnPwWtZG39" target="_blank" class="btn-channel btn-wa">
+                    <div class="channel-info">
+                        <span>💬</span>
+                        <span>Channel WhatsApp</span>
+                    </div>
+                    <span class="arrow">➔</span>
+                </a>
+
+                <!-- Link Channel YouTube (Merah) -->
+                <a href="https://www.youtube.com/@JanpiwWok" target="_blank" class="btn-channel btn-yt">
+                    <div class="channel-info">
+                        <span>📺</span>
+                        <span>Channel YouTube</span>
+                    </div>
+                    <span class="arrow">➔</span>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Kartu Kata-Kata / Quotes -->
+        <section class="section-card">
+            <h2>💬 Kata-Kata Hari Ini</h2>
+            <div class="quotes-container">
+                <p class="quote-text">"Tetap konsisten dan fokus pada proses. Hasil terbaik hanya didapatkan oleh mereka yang tidak pernah berhenti mencoba."</p>
+            </div>
+            
+            <center>
+                <a href="https://t.me/testozanspiw2" target="_blank" class="btn-view-all-testi">
+                    📂 Cek Bukti Transaksi & Testi Real di Telegram ➔
+                </a>
+            </center>
+        </section>
+
+        <!-- Bagian Interaktif Tombol Suka & Status -->
+        <div class="stats-row">
+            <div class="stat-box" onclick="likeProfile()">
+                <div class="stat-num" id="likeCount" style="color: var(--accent-red);">1,540</div>
+                <div class="stat-label">❤️ Klik Suka</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-num">Online</div>
+                <div class="stat-label">⚡ Status Toko</div>
+            </div>
+        </div>
+
+        <footer>
+            <p class="copyright">&copy; 2026 Zanspiw Official. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+
+    <!-- Script JavaScript Fitur Klik Suka -->
+    <script>
+        let likes = 1540;
+        let liked = false;
+        function likeProfile() {
+            if(!liked) {
+                likes++;
+                document.getElementById('likeCount').innerText = likes.toLocaleString();
+                liked = true;
+                alert('Terima kasih atas dukungannya! ❤️ Sukses selalu untuk bisnis panelnya!');
+            } else {
+                alert('Kamu sudah memberikan suka untuk profil ini! ✨');
+            }
+        }
+    </script>
+</body>
+</html>
